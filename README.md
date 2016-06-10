@@ -4,9 +4,11 @@
 
 ### Pre-requisites
 
-1. Create Packer folder
-2. Download Packer into Packer folder and install https://www.packer.io/downloads.html
-<br><br>Make sure you can see the following after typing `packer` on the console
+1. Create Packer folder named  `packer`
+2. Navigate into the packer folder and download Packer into it and unzip (tip: To unzip in Linux from command line use the `unzip` package) https://www.packer.io/downloads.html
+3. While inside the folder in the command window type for Linux `./packer` and windows `packer`
+
+Make sure the following comes up to know that Packer is working.
 
 ```
 usage: packer [--version] [--help] <command> [<args>]
