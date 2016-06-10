@@ -6,7 +6,9 @@
 
 1. Create Packer folder named  `packer`
 2. Navigate into the packer folder and download Packer into it and unzip (tip: To unzip in Linux from command line use the `unzip` package) https://www.packer.io/downloads.html
-3. While inside the folder in the command window type for Linux `./packer` and windows `packer`
+3. While inside the folder in the command window type:
+ 1. Linux `./packer`
+ 1. Windows `packer`
 
 Make sure the following comes up to know that Packer is working.
 
