@@ -15,7 +15,7 @@
 The structure of the packer folder should be the following
 
 **Note:** The following image represents windows OS
-![Folder Structure](img01.jpg)
+![Folder Structure](img/img01.JPG)
 
 ## Using Packer
 
