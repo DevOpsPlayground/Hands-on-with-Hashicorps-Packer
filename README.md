@@ -136,8 +136,8 @@ We are going to create another file called `config.json` in the packer folder an
 {
 		"USER": "forest",
 		"PASS": "forest",
-		"OS_TYPE": "Ubuntu_64",
-    "OUTPUT_FOLDER": "MY_VM",
+		"OS_TYPE": "Ubuntu_64"
+        "OUTPUT_FOLDER": "MY_VM",
 		"MEMORY": "1024",
 		"CPUS": "1",
 		"DISK_SIZE": "40960",
