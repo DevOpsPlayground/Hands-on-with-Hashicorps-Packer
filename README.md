@@ -183,7 +183,7 @@ $ packer build \
     template.json
 ```
 
-After pressing Enter VirtualBox might open up a window (it might ask for permission and we need to allow it) after this we will have Debian installed automatically
+After pressing Enter VirtualBox will begin creating the VM and running it in headless mode. Please be careful not to open up a windows with the running machine since interaction with it may cause a conflict while generating the image.
 
 ![Folder Structure](img/img02.JPG)
 
