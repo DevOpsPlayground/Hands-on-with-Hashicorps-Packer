@@ -22,7 +22,7 @@ The structure of the packer folder should be the following
 
 1. Under the command window navigate to the packer folder
 - While inside the folder in the command window type:
- 1. Linux `./packer`
+ 1. Linux/Mac/Git Bash `./packer`
  1. Windows `packer`
 
 Make sure the following comes up to know that Packer is working.
@@ -52,9 +52,9 @@ You should be getting the following output:
 
 ```
 Failed to parse template: Error parsing JSON: invalid character '"' after object key:value pair
-At line 6, column 4 (offset 66):
-    5:          "PASS": "forest"
-    6:          "
+At line 7, column 4 (offset 96):
+    6:          "OUTPUT_FOLDER": "MY_VM"
+    7:          "
          ^
 ```
 
@@ -79,18 +79,17 @@ Packer will show us the structure of our files
 ```
 Optional variables and their defaults:
 
-  BOOT_COMMAND  = <enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>
-  CHECKSUM      = b8b172cbdf04f5ff8adc8c2c1b4007ccf66f00fc6a324a6da6eba67de71746f6
+  CHECKSUM      = ad4e8c27c561ad8248d5ebc1d36eb172f884057bfeb2c22ead823f59fa8c3dff
   CHECKSUM_TYPE = sha256
   CPUS          = 1
-  DISK_SIZE     = 40960
+  DISK_SIZE     = 5120
   GUEST_IP      = 10.0.2.15
   GUEST_PORT    = 80
   HOST_IP       = 127.0.0.1
   HOST_PORT     = 8080
-  ISO_URL       = ubuntu-16.04-server-amd64.iso
-  MEMORY        = 1024
-  OS_TYPE       = Ubuntu_64
+  ISO_URL       = debian-8.5.0-amd64-netinst.iso
+  MEMORY        = 512
+  OS_TYPE       = Debian_64
   OUTPUT_FOLDER = MY_VM
   PASS          = forest
   PROTOCOL      = tcp
@@ -107,6 +106,7 @@ Provisioners:
 Note: If your build names contain user variables or template
 functions such as 'timestamp', these are processed at build time,
 and therefore only show in their raw form here.
+
 ```
 
 ### Working with user variables
@@ -134,23 +134,22 @@ We are going to create another file called `config.json` in the packer folder an
 
 ```
 {
-		"USER": "forest",
-		"PASS": "forest",
-		"OS_TYPE": "Ubuntu_64"
-        "OUTPUT_FOLDER": "MY_VM",
-		"MEMORY": "1024",
-		"CPUS": "1",
-		"DISK_SIZE": "40960",
-		"PROTOCOL": "tcp",
-		"HOST_IP": "127.0.0.1",
-		"HOST_PORT": "8080",
-		"GUEST_IP": "10.0.2.15",
-		"GUEST_PORT": "80",
-		"ISO_URL": "ubuntu-16.04-server-amd64.iso",
-		"CHECKSUM": "b8b172cbdf04f5ff8adc8c2c1b4007ccf66f00fc6a324a6da6eba67de71746f6",
-		"CHECKSUM_TYPE": "sha256",
-		"BOOT_COMMAND": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>"
-	}
+  "USER": "forest",
+  "PASS": "forest",
+  "OUTPUT_FOLDER": "MY_VM",
+  "OS_TYPE": "Debian_64",
+  "MEMORY": "512",
+  "CPUS": "1",
+  "DISK_SIZE": "5120",
+  "PROTOCOL": "tcp",
+  "HOST_IP": "127.0.0.1",
+  "HOST_PORT": "8080",
+  "GUEST_IP": "10.0.2.15",
+  "GUEST_PORT": "80",
+  "ISO_URL": "debian-8.5.0-amd64-netinst.iso",
+  "CHECKSUM": "ad4e8c27c561ad8248d5ebc1d36eb172f884057bfeb2c22ead823f59fa8c3dff",
+  "CHECKSUM_TYPE": "sha256"
+}
 ```
 
 ###
@@ -158,6 +157,8 @@ We are going to create another file called `config.json` in the packer folder an
 Let's try to validate `template.json` and see what happens.
 
 Now it is not recognizing the variables. In order to pass them to the template we need to use the `-var-file` tag.
+
+`Packer validate -var-file=config.json template.json`
 
 #### 2) From The Command Line
 
@@ -173,8 +174,8 @@ The command should look like this:
 
 `packer build -var-file=config.json -var 'OUTPUT_FOLDER=XXXXX' template.json`
 
-Another way to put it would be:
-
+Another way to put it would be:  
+**Note:** For windows use `^` instead of `\`
 ```
 $ packer build \
     -var-file=config.json \
@@ -182,7 +183,7 @@ $ packer build \
     template.json
 ```
 
-After pressing Enter VirtualBox should open up a window (it might ask for permission and we need to allow it) after this we will have ubuntu installed automatically
+After pressing Enter VirtualBox might open up a window (it might ask for permission and we need to allow it) after this we will have Debian installed automatically
 
 ![Folder Structure](img/img02.JPG)
 
