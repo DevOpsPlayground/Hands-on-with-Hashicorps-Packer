@@ -181,3 +181,54 @@ $ packer build \
     -var 'OUTPUT_FOLDER=XXXXX' \
     template.json
 ```
+
+After pressing Enter VirtualBox should open up a window (it might ask for permission and we need to allow it) after this we will have ubuntu installed automatically
+
+![Folder Structure](img/img02.JPG)
+
+## PARALLEL BUILDS
+
+Now that we have our template to create a VM under VirtualBox we can use the same configuration to do it under other tools in parallel. Here's an example of the syntax to add VMware to our build.
+
+```
+"builders": [{
+    "type": "virtualbox-iso",
+    ...
+    ...
+    "vboxmanage": [
+      [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+      [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+    ]
+  },{
+    "type": "vmware-iso",
+    ...
+    ...
+    "vmx_data": {
+      "memsize": "512",
+      "numvcpus": "1",
+    }
+  }],
+```
+
+```
+"provisioners": [
+  {
+    "type": "shell",
+    "execute_command": "echo 'password'|sudo -S sh '{{.Path}}'",
+    "override": {
+      "virtualbox-iso": {
+        "scripts": [
+          ...
+          ...
+        ]
+      },
+      "vmware-iso": {
+        "scripts": [
+          ...
+          ...
+        ]
+      }
+    }
+  }
+],
+```
