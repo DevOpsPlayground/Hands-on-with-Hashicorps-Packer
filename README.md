@@ -93,7 +93,7 @@ Optional variables and their defaults:
   OS_TYPE       = Ubuntu_64
   OUTPUT_FOLDER = MY_VM
   PASS          = forest
-  Protocol      = tcp
+  PROTOCOL      = tcp
   USER          = forest
 
 Builders:
@@ -141,7 +141,7 @@ We are going to create another file called `config.json` in the packer folder an
 		"MEMORY": "1024",
 		"CPUS": "1",
 		"DISK_SIZE": "40960",
-		"Protocol": "tcp",
+		"PROTOCOL": "tcp",
 		"HOST_IP": "127.0.0.1",
 		"HOST_PORT": "8080",
 		"GUEST_IP": "10.0.2.15",
