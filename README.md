@@ -52,8 +52,8 @@ You should be getting the following output:
 
 ```
 Failed to parse template: Error parsing JSON: invalid character '"' after object key:value pair
-At line 7, column 4 (offset 96):
-    6:          "OUTPUT_FOLDER": "MY_VM"
+At line 7, column 4 (offset 94):
+    6:          "OS_TYPE": "Debian_64"
     7:          "
          ^
 ```
@@ -89,8 +89,8 @@ Optional variables and their defaults:
   HOST_PORT     = 8080
   ISO_URL       = debian-8.5.0-amd64-netinst.iso
   MEMORY        = 512
+  NAME          = World
   OS_TYPE       = Debian_64
-  OUTPUT_FOLDER = MY_VM
   PASS          = forest
   PROTOCOL      = tcp
   USER          = forest
@@ -101,12 +101,13 @@ Builders:
 
 Provisioners:
 
+  file
+  shell
   shell
 
 Note: If your build names contain user variables or template
 functions such as 'timestamp', these are processed at build time,
 and therefore only show in their raw form here.
-
 ```
 
 ### Working with user variables
@@ -136,11 +137,11 @@ We are going to create another file called `config.json` in the packer folder an
 {
   "USER": "forest",
   "PASS": "forest",
-  "OUTPUT_FOLDER": "MY_VM",
   "OS_TYPE": "Debian_64",
   "MEMORY": "512",
   "CPUS": "1",
   "DISK_SIZE": "5120",
+  "NAME": "World",
   "PROTOCOL": "tcp",
   "HOST_IP": "127.0.0.1",
   "HOST_PORT": "8080",
@@ -166,11 +167,11 @@ To set variables from the command line, the `-var` flag is used as a parameter t
 
 Finally with all the information given we can build our template by passing the variables located under the `config.json` file and we are also going to modify one of the values using the `-var` flag
 
-We want to change the name of the folder were our image is going to be created. The variable responsible for this is `OUTPUT_FOLDER`. By defauld it has the value `MY_VM` so we are going to change it to our name.
+We want to change the name of the folder were our image is going to be created. The variable responsible for this is `NAME`. By defauld it has the value `World` so we are going to change it to our name.
 
 The command should look like this:
 
-`packer build -var-file=config.json -var 'OUTPUT_FOLDER=XXXXX' template.json`
+`packer build -var-file=config.json -var 'NAME=XXXXX' template.json`
 
 Another way to put it would be:  
 **Note:** For windows use `^` (caret) instead of `\`
@@ -178,7 +179,7 @@ Another way to put it would be:
 ```
 $ packer build \
     -var-file=config.json \
-    -var 'OUTPUT_FOLDER=XXXXX' \
+    -var 'NAME=XXXXX' \
     template.json
 ```
 
