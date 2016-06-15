@@ -6,9 +6,9 @@
 
 - Create a folder named  `packer` in your PC
 
-- Copy files from `Packer_Data` folder in the USB drive under the `packer` folder that was just created.
+- Download the  files from http://192.168.1.191/shares/packer_files/packer.zip and unzip inside the packer folder you just created.
 
-- Navigate the `Packer_version` folder in the USB drive and look for your OS and copy the 32 or 64 bit version in your local `packer` folder (this can also be donwnloaded from https://www.packer.io/downloads.html)
+- Download the correct packer version according to your OS from https://www.packer.io/downloads.html.
 
 - Download Virtualbox from https://www.virtualbox.org/wiki/Downloads and install.
 

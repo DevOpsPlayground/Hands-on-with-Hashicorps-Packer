@@ -3,7 +3,7 @@
 	{
 		"USER": "forest",
 		"PASS": "forest",
-		"OUTPUT_FOLDER": "MY_VM",
+		"OUTPUT_FOLDER": "MY_VM"
 		"OS_TYPE": "Debian_64",
 		"MEMORY": "512",
 		"CPUS": "1",
