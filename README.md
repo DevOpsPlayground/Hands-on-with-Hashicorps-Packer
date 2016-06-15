@@ -8,7 +8,7 @@
 
 - Download the  files from http://192.168.1.191/shares/packer_files/packer.zip and unzip inside the packer folder you just created.
 
-- Download the correct packer version according to your OS from https://www.packer.io/downloads.html.
+- Download the correct packer version according to your OS from https://www.packer.io/downloads.html and put it inside the `packer` folder you just created.
 
 - Download Virtualbox from https://www.virtualbox.org/wiki/Downloads and install.
 

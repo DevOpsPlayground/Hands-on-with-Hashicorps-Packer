@@ -1,1 +1,1 @@
-echo "<html><header><title>Forest Technologies</title></header><body>Hello Everyone! I was passed here with the script Create_HTML.sh </body></html>" > /var/www/html/forest.html
+echo "<html><header><title>Forest Technologies</title></header><body><h1>Hello $1 !</h1><br /><img src=\"forest.png\" alt=\"Forest Technologies Ltd Logo\" /></body></html>" > /var/www/html/forest.html
