@@ -15,6 +15,7 @@
 The structure of the packer folder should be the following
 
 **Note:** The following image represents windows OS
+
 ![Folder Structure](img/img01.JPG)
 
 ## Using Packer
@@ -23,22 +24,21 @@ The structure of the packer folder should be the following
 1. Under the command window navigate to the packer folder
 - While inside the folder in the command window type:
  1. Linux/Mac/Git Bash `./packer`
- 1. Windows `packer`
+ - Windows `packer`
 
 Make sure the following comes up to know that Packer is working.
- ```
- usage: packer [--version] [--help] <command> [<args>]
 
- Available commands are:
-     build       build image(s) from template
-     fix         fixes templates from old versions of packer
-     inspect     see components of a template
-     push        push a template and supporting files to a Packer build service
-     validate    check that a template is valid
-     version     Prints the Packer version
+```
+   usage: packer [--version] [--help] <command> [<args>]
 
- ```
-
+   Available commands are:
+       build       build image(s) from template
+       fix         fixes templates from old versions of packer
+       inspect     see components of a template
+       push        push a template and supporting files to a Packer build service
+       validate    check that a template is valid
+       version     Prints the Packer version
+```
 ## Working with packer commands  
 **Note:** The following commands to call Packer works on windows, please make sure you are using the one that corresponds to your OS
 
@@ -118,7 +118,7 @@ User variables can be defined inside the template in the `variables` section wit
    "aws_access_key": "",
    "aws_secret_key": ""
  },
- ```
+```
 
 This is how we have our variables currently set up in our template.
 
@@ -152,8 +152,6 @@ We are going to create another file called `config.json` in the packer folder an
 }
 ```
 
-###
-
 Let's try to validate `template.json` and see what happens.
 
 Now it is not recognizing the variables. In order to pass them to the template we need to use the `-var-file` tag.
@@ -175,7 +173,8 @@ The command should look like this:
 `packer build -var-file=config.json -var 'OUTPUT_FOLDER=XXXXX' template.json`
 
 Another way to put it would be:  
-**Note:** For windows use `^` instead of `\`
+**Note:** For windows use `^` (caret) instead of `\`
+
 ```
 $ packer build \
     -var-file=config.json \
@@ -185,7 +184,7 @@ $ packer build \
 
 After pressing Enter VirtualBox will begin creating the VM and running it in headless mode. Please be careful not to open up a windows with the running machine since interaction with it may cause a conflict while generating the image.
 
-![Folder Structure](img/img02.JPG)
+<img src=img/img02.JPG" width="250">
 
 ## PARALLEL BUILDS
 
