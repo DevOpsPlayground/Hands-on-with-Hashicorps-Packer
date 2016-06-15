@@ -167,7 +167,7 @@ To set variables from the command line, the `-var` flag is used as a parameter t
 
 Finally with all the information given we can build our template by passing the variables located under the `config.json` file and we are also going to modify one of the values using the `-var` flag
 
-We want to change the name of the folder were our image is going to be created. The variable responsible for this is `NAME`. By defauld it has the value `World` so we are going to change it to our name.
+We want to change the value of the variable that is given under the shell command. The variable being used is `NAME`. By default it has the value `World` so we are going to change it to our name.
 
 The command should look like this:
 
@@ -183,9 +183,9 @@ $ packer build \
     template.json
 ```
 
-After pressing Enter VirtualBox will begin creating the VM and running it in headless mode. Please be careful not to open up a windows with the running machine since interaction with it may cause a conflict while generating the image.
+After pressing Enter VirtualBox will begin creating the VM and running it in headless mode. Please be careful not to open up a window with the running machine since interaction with it may cause a conflict while generating the image.
 
-<img src=img/img02.JPG" width="250">
+![Folder Structure](img/img02.JPG)
 
 ## PARALLEL BUILDS
 
