@@ -4,13 +4,16 @@
 
 ### Pre-requisites
 
+#### Installing Packer
+
+
 - Create a folder named  `packer` in your PC
 
-- Download the  files from http://192.168.1.191/shares/packer_files/packer.zip and unzip inside the packer folder you just created.
+- Put all the files from folder `Template Virtualbox` inside the newly created folder in our computer.
 
-- Download the correct packer version according to your OS from https://www.packer.io/downloads.html and put it inside the `packer` folder you just created.
+- Install packer, you can download and check the instructions from [here](https://www.packer.io/intro/getting-started/setup.html).
 
-- Download Virtualbox from https://www.virtualbox.org/wiki/Downloads and install.
+- Download and install Virtualbox from [here](https://www.virtualbox.org/wiki/Downloads).
 
 The structure of the packer folder should be the following
 
@@ -48,23 +51,7 @@ Run the following command under the console window
 
 `packer validate template.json`
 
-You should be getting the following output:
-
-```
-Failed to parse template: Error parsing JSON: invalid character '"' after object key:value pair
-At line 7, column 4 (offset 94):
-    6:          "OS_TYPE": "Debian_64"
-    7:          "
-         ^
-```
-
-This means we have a syntax error at line 6. Before we can run our template we need to make sure this is fix.
-
-Once you had the systax corrected `validate` again:
-
-`packer validate template.json`
-
-This time the output should be:
+The output should be:
 
 `Template validated successfully.`
 
@@ -129,6 +116,8 @@ This is how we have our variables currently set up in our template.
 
 Variables can also be set from an external JSON file. The  `-var-file` flag reads a file.
 
+**Note:** JSON files can be opened with any text editors.
+
 We are going to create another file called `config.json` in the packer folder and we are going to put the variable list from our `template.json` (remember to delete the variables from `template.json`)
 
 `config.json` should look like this:
@@ -186,6 +175,43 @@ $ packer build \
 After pressing Enter VirtualBox will begin creating the VM and running it in headless mode. Please be careful not to open up a window with the running machine since interaction with it may cause a conflict while generating the image.
 
 ![Folder Structure](img/img02.JPG)
+
+## Creating an instance from our new image
+
+Once our build has finished we will get the following under our command window:
+
+```
+==> virtualbox-iso: Unregistering and deleting virtual machine...
+Build 'virtualbox-iso' finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> virtualbox-iso: VM files in directory: MY_VM_XXXXXXXXXXXXX
+```
+
+Under the folder  were we have our `template.json` a new folder will be created with the name `MY_VM_XXXXXXXXXXXXX`
+
+Inside this folder you should have now 2 files:
+- OVF: This file contains the configuration of our virtual machine.
+- VMDK: This file contains our actual virtual machine with the OS
+
+To launch our newly created image we need to open `VirtualBox` and the go to:
+
+File -> Import (and we look for our new OVF file)
+
+Once the VM has been imported we need to run it.
+
+### Taking a look in our new VM
+
+Once our VM is running we can open any browser of choice and type in the URL:
+
+`localhost:8080`
+
+We should be able to see that apache is working. Afterwards we can type:
+
+`localhost:8080/forest.html`
+
+This will show the webpage we created with one of our scripts.
+
 
 ## PARALLEL BUILDS
 

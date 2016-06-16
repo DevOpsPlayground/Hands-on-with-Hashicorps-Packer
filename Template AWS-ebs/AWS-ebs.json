@@ -1,0 +1,36 @@
+{
+	"variables": 
+	{ 
+		"aws_access_key": "{{env `ACCESS_KEY`}}", 
+		"aws_secret_key": "{{env `SECRET_KEY`}}"
+	}, 
+
+	"builders": 
+	[{
+		
+		"access_key": "{{user `aws_access_key`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"type": "amazon-ebs",
+		"region": "",
+		"source_ami": "",
+		"instance_type": "",
+		"ssh_port": 22,
+		"ssh_private_ip": true,
+		"ssh_private_key_file": "", 
+		"ssh_username": "",
+		"ssh_keypair_name": "",
+		"subnet_id": "",
+		"security_group_id": "",
+		"ami_name": "",	
+		"run_tags": 
+		{
+			"Name": "XXX",
+			"Owner" "XXX"
+		},
+		"tags": 
+		{
+			"Name": "XXX",
+			"Owner" "XXX"
+		}
+	}]
+}
